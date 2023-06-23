@@ -34,10 +34,10 @@
                         | 休会期限日: #{@user.automatic_retire_date(@user)} (本日休会最終日)
                     - elsif @user.remaining_days_until_automatic_retire(@user) <= 7
                       span.a-meta__value.is-danger
-                        | 休会期限日: #{@user.automatic_retire_date(@user)} (自動退会まであと#{@user.remaining_days_until_automatic_retire(@user).floor}日)
+                        | 休会期限日: #{@user.automatic_retire_date(@user)} (自動退会まであと#{@user.remaining_days_until_automatic_retire(@user).ceil}日)
                     - else
                       span.a-meta__value
-                        | 休会期限日: #{@user.automatic_retire_date(@user)} (自動退会まであと#{@user.remaining_days_until_automatic_retire(@user).floor}日)
+                        | 休会期限日: #{@user.automatic_retire_date(@user)} (自動退会まであと#{@user.remaining_days_until_automatic_retire(@user).ceil}日)
                     = render 'users/hibernation_info', user: @user
                   - if admin_or_mentor_login? && @user.retired?
                     = render 'users/retire_info', user: @user
