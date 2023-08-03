@@ -6,6 +6,21 @@
       .user-metas__item-label 最後に休会した日時
       .user-metas__item-value
         = l user.hibernated_at
+    .user-metas__item
+      .user-metas__item-label 休会期限日時
+      .user-metas__item-value
+        - if user.remaining_days_until_automatic_retire < 1
+          span.user-metas__item-value-text.is-danger
+            - if user.remaining_hours_until_automatic_retire >= 1
+              | #{l user.automatic_retire_datetime} (自動退会まであと#{user.remaining_hours_until_automatic_retire}時間)
+            - if user.remaining_hours_until_automatic_retire < 1
+              | #{l user.automatic_retire_datetime} (自動退会まであと#{user.remaining_minutes_until_automatic_retire}分)
+        - elsif user.remaining_days_until_automatic_retire <= 7
+          span.user-metas__item-value-text.is-danger
+            | #{l user.automatic_retire_datetime} (自動退会まであと#{user.remaining_days_until_automatic_retire}日)
+        - else
+          span.user-metas__item-value-text
+            | #{l user.automatic_retire_datetime} (自動退会まであと#{user.remaining_days_until_automatic_retire}日)
   - user.hibernations.each_with_index do |hibernation, i|
     - number = i + 1
     .user-metas__items

@@ -27,6 +27,12 @@
                   = render 'users/profile', user: @user
                 .user-data__sub
                   - if admin_or_mentor_login? && @user.hibernated?
+                    - if @user.calculate_absence_days(@user) < 3600 * 24
+                      = "休会期限日: #{@user.automatic_retire_date(@user)} （本日休会最終日）"
+                    - elsif @user.calculate_absence_days(@user) < 3600 * 24 * 7
+                      = "休会期限日: #{@user.automatic_retire_date(@user)} （本日休会最終日)⇦赤色で表示"
+                    - else
+                      = "休会期限日: #{@user.automatic_retire_date(@user)}"
                     = render 'users/hibernation_info', user: @user
                   - if admin_or_mentor_login? && @user.retired?
                     = render 'users/retire_info', user: @user
