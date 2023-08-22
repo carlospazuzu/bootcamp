@@ -87,7 +87,7 @@
       :reactionableId='`Question_${question.id}`')
     hr.a-border-tint
     footer.card-footer(
-      v-if='currentUser.id === question.user.id || isRole("mentor")')
+      v-if='currentUser.id === question.user.id || isRole("mentor") || isRole("admin")')
       .card-main-actions
         ul.card-main-actions__items
           li.card-main-actions__item
@@ -96,7 +96,7 @@
               i#new.fa-solid.fa-pen
               | 内容修正
           li.card-main-actions__item.is-sub.is-only-mentor(
-            v-if='isRole("mentor")')
+            v-if='isRole("mentor") || isRole("admin")')
             // - vue.jsでDELETE methodのリンクを作成する方法が、
             // - 見つからなかったので、
             // - いい実装方法ではないが、
@@ -107,9 +107,6 @@
               data-confirm='自己解決した場合は削除せずに回答を書き込んでください。本当に削除しますか？',
               data-method='delete')
               | 削除する
-          li.card-main-actions__item.is-sub(v-else)
-            label.card-main-actions__muted-action(for='modal-delete-request')
-              | 削除申請
         .card-footer__notice(v-show='displayedUpdateMessage')
           p
             | 質問を更新しました
