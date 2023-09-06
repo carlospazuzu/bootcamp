@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Categories::PracticesController < ApplicationController
+class Mentor::Categories::PracticesController < ApplicationController
   before_action :require_admin_login
 
   def index
