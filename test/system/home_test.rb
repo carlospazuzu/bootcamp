@@ -224,17 +224,17 @@ class HomeTest < ApplicationSystemTestCase
       day_after_tomorrow_event_label = find('.card-list__label', text: '明後日開催')
 
       today_events_texts = [
-        { category: '特別\nイベント', title: '直近イベントの表示テスト用(当日)', start_at: '2017年04月03日(月) 09:00' },
-        { category: '特別\nイベント', title: 'kimura専用イベント', start_at: '2017年04月03日(月) 09:00' },
+        { category: '特別\\nイベント', title: '直近イベントの表示テスト用(当日)', start_at: '2017年04月03日(月) 09:00' },
+        { category: '特別\\nイベント', title: 'kimura専用イベント', start_at: '2017年04月03日(月) 09:00' },
         { category: '質問', title: '質問・雑談タイム', start_at: '2017年04月03日(月) 16:00' },
         { category: '輪読会', title: 'ダッシュボード表示確認用テスト定期イベント', start_at: '2017年04月03日(月) 21:00' }
       ]
       tomorrow_events_texts = [
         { category: '輪読会', title: 'ダッシュボード表示確認用テスト定期イベント', start_at: '2017年04月04日(火) 21:00' },
-        { category: '特別\nイベント', title: '直近イベントの表示テスト用(翌日)', start_at: '2017年04月04日(火) 22:00' }
+        { category: '特別\\nイベント', title: '直近イベントの表示テスト用(翌日)', start_at: '2017年04月04日(火) 22:00' }
       ]
       day_after_tomorrow_events_texts = [
-        { category: '特別\nイベント', title: '直近イベントの表示テスト用(明後日)', start_at: '2017年04月05日(水) 09:00' },
+        { category: '特別\\nイベント', title: '直近イベントの表示テスト用(明後日)', start_at: '2017年04月05日(水) 09:00' },
         { category: '輪読会', title: '独習Git輪読会', start_at: '2017年04月05日(水) 21:00' }
       ]
 
@@ -322,15 +322,15 @@ class HomeTest < ApplicationSystemTestCase
 
   test 'display counts of passed almost 5days' do
     visit_with_auth '/', 'mentormentaro'
-    assert_text "2件の提出物が、\n8時間後に5日経過に到達します。"
+    assert_text "2件の提出物が、\\n8時間後に5日経過に到達します。"
 
     products(:product70).update!(checker: users(:mentormentaro))
     visit current_path
-    assert_text "1件の提出物が、\n8時間後に5日経過に到達します。"
+    assert_text "1件の提出物が、\\n8時間後に5日経過に到達します。"
 
     products(:product71).update!(checker: users(:mentormentaro))
     visit current_path
-    assert_text "しばらく5日経過に到達する\n提出物はありません。"
+    assert_text "しばらく5日経過に到達する\\n提出物はありません。"
   end
 
   test 'work link of passed almost 5days' do
