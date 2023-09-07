@@ -322,15 +322,15 @@ class HomeTest < ApplicationSystemTestCase
 
   test 'display counts of passed almost 5days' do
     visit_with_auth '/', 'mentormentaro'
-    assert_text "2件の提出物が、\\n8時間後に5日経過に到達します。"
+    assert_text '2件の提出物が、\\n8時間後に5日経過に到達します。'
 
     products(:product70).update!(checker: users(:mentormentaro))
     visit current_path
-    assert_text "1件の提出物が、\\n8時間後に5日経過に到達します。"
+    assert_text '1件の提出物が、\\n8時間後に5日経過に到達します。'
 
     products(:product71).update!(checker: users(:mentormentaro))
     visit current_path
-    assert_text "しばらく5日経過に到達する\\n提出物はありません。"
+    assert_text 'しばらく5日経過に到達する\\n提出物はありません。'
   end
 
   test 'work link of passed almost 5days' do
