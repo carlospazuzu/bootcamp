@@ -91,5 +91,4 @@ module UsersHelper
 
     ((automatic_retire_datetime(user) - Time.zone.now) / 60).floor
   end
-
 end
