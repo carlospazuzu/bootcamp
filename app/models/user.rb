@@ -742,6 +742,12 @@ class User < ApplicationRecord
     )
   end
 
+  def calculate_absence_days
+    return unless hibernated_at
+
+    ((Time.zone.now - hibernated_at) / 86_400).floor
+  end
+
   def automatic_retire_datetime
     return unless hibernated_at
 
