@@ -757,19 +757,19 @@ class User < ApplicationRecord
   def remaining_days_until_automatic_retire
     return unless hibernated_at
 
-    ((hibernated_at.advance(months: 6) - Time.zone.now) / 86_400).floor
+    ((automatic_retire_datetime - Time.zone.now) / 86_400).floor
   end
 
   def remaining_hours_until_automatic_retire
     return unless hibernated_at
 
-    ((hibernated_at.advance(months: 6) - Time.zone.now) / 3600).floor
+    ((automatic_retire_datetime - Time.zone.now) / 3600).floor
   end
 
   def remaining_minutes_until_automatic_retire
     return unless hibernated_at
 
-    ((hibernated_at.advance(months: 6) - Time.zone.now) / 60).floor
+    ((automatic_retire_datetime - Time.zone.now) / 60).floor
   end
 
   private
