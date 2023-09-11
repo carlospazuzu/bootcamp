@@ -742,36 +742,6 @@ class User < ApplicationRecord
     )
   end
 
-  def calculate_absence_days
-    return unless hibernated_at
-
-    ((Time.zone.now - hibernated_at) / 86_400).floor
-  end
-
-  def automatic_retire_datetime
-    return unless hibernated_at
-
-    hibernated_at.advance(months: 6)
-  end
-
-  def remaining_days_until_automatic_retire
-    return unless hibernated_at
-
-    ((automatic_retire_datetime - Time.zone.now) / 86_400).floor
-  end
-
-  def remaining_hours_until_automatic_retire
-    return unless hibernated_at
-
-    ((automatic_retire_datetime - Time.zone.now) / 3600).floor
-  end
-
-  def remaining_minutes_until_automatic_retire
-    return unless hibernated_at
-
-    ((automatic_retire_datetime - Time.zone.now) / 60).floor
-  end
-
   private
 
   def password_required?
