@@ -68,12 +68,6 @@ module UsersHelper
     ((Time.zone.now - user.hibernated_at) / 86_400).floor
   end
 
-  def automatic_retire_datetime(user)
-    return unless user.hibernated_at
-
-    user.hibernated_at.advance(months: 6)
-  end
-
   def remaining_days_until_automatic_retire(user)
     return unless user.hibernated_at
 
@@ -91,4 +85,12 @@ module UsersHelper
 
     ((automatic_retire_datetime(user) - Time.zone.now) / 60).floor
   end
+end
+
+private
+
+def automatic_retire_datetime(user)
+  return unless user.hibernated_at
+
+  user.hibernated_at.advance(months: 6)
 end

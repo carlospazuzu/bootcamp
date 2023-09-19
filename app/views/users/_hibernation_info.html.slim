@@ -15,15 +15,15 @@
         - elsif user.remaining_days_until_automatic_retire(user) < 1
           span.user-metas__item-value-text.is-danger
             - if user.remaining_hours_until_automatic_retire(user) >= 1
-              | #{l user.automatic_retire_datetime(user)} (自動退会まであと#{user.remaining_hours_until_automatic_retire(user)}時間)
+              | #{l user.automatic_retire_datetime} (自動退会まであと#{user.remaining_hours_until_automatic_retire(user)}時間)
             - if user.remaining_hours_until_automatic_retire(user) < 1
-              | #{l user.automatic_retire_datetime(user)} (自動退会まであと#{user.remaining_minutes_until_automatic_retire(user)}分)
+              | #{l user.automatic_retire_datetime} (自動退会まであと#{user.remaining_minutes_until_automatic_retire(user)}分)
         - elsif user.remaining_days_until_automatic_retire(user) <= 7
           span.user-metas__item-value-text.is-danger
-            | #{l user.automatic_retire_datetime(user)} (自動退会まであと#{user.remaining_days_until_automatic_retire(user)}日)
+            | #{l user.automatic_retire_datetime} (自動退会まであと#{user.remaining_days_until_automatic_retire(user)}日)
         - else
           span.user-metas__item-value-text
-            | #{l user.automatic_retire_datetime(user)} (自動退会まであと#{user.remaining_days_until_automatic_retire(user)}日)
+            | #{l user.automatic_retire_datetime} (自動退会まであと#{user.remaining_days_until_automatic_retire(user)}日)
   - user.hibernations.each_with_index do |hibernation, i|
     - number = i + 1
     .user-metas__items

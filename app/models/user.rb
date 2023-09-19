@@ -742,6 +742,12 @@ class User < ApplicationRecord
     )
   end
 
+  def automatic_retire_datetime
+    return unless hibernated_at
+
+    hibernated_at.advance(months: 6)
+  end
+
   private
 
   def password_required?
